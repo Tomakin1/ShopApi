@@ -80,6 +80,16 @@
   },
   {
     "ContainingType": "ShopApi.Controllers.CustomerController",
+    "Method": "GetCustomersBrands",
+    "RelativePath": "customer/Customers-brand",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.CustomerController",
     "Method": "GetCustomersProduct",
     "RelativePath": "customer/customers-product",
     "HttpMethod": "GET",
@@ -161,10 +171,20 @@
       },
       {
         "Name": "product",
-        "Type": "ShopApi.Models.Product",
+        "Type": "ShopApi.Dtos.ProductDto",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.ProductController",
+    "Method": "ProductsBrands",
+    "RelativePath": "product/products-brand",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   }
 ]

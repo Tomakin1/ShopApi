@@ -1,4 +1,5 @@
 ﻿using ShopApi.Dtos;
+using ShopApi.Models;
 
 public class CustomerDto
 {
@@ -8,15 +9,8 @@ public class CustomerDto
     public int TCKN { get; set; }
 
     public ICollection<ProductDto>? Products { get; set; } = new List<ProductDto>();
-    public ICollection<CustomerDetailDto>? CustomerDetails { get; set; } = new List<CustomerDetailDto>();
-
-    public CustomerDetailDto? CustomerDetail { get; set; }  // CustomerDetail iç içe olabilir
+    public ICollection<CustomersBrandDto>? CustomersBrands { get; set; } = new List<CustomersBrandDto>();
+    public CustomerDetailDto? CustomerDetail { get; set; }
 }
 
-public class CustomerDetailDto
-{
-    public string? Address { get; set; } = default!;
-    public int? Age { get; set; }
-    public string? Job { get; set; } = default!;
-    public bool? Gender { get; set; }
-}
+

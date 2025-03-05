@@ -137,5 +137,27 @@ namespace ShopApi.Controllers
                 return StatusCode(500, "Sunucu hatası.");
             }
         }
+        [HttpGet("Customers-brand")]
+        public async Task<IActionResult> GetCustomersBrands()
+        {
+            try
+            {
+                var CustomersBrand = await _repo.GetCustomersBrands();
+
+                if (!CustomersBrand.Any())
+                {
+                    _logger.LogError("Liste Getirilirken Bir Hata Oluştu");
+                    return NotFound();
+                }
+
+                return Ok(CustomersBrand);
+
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                throw;
+            }
+        }
     }
 }

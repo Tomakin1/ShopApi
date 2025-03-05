@@ -4,6 +4,7 @@ using ShopApi.Dtos;
 using ShopApi.Models;
 using ShopApi.Repositories.Interfaces;
 
+
 namespace ShopApi.Repositories.Implementations
 {
     public class CustomerRepository : ICustomerRepository
@@ -228,5 +229,35 @@ namespace ShopApi.Repositories.Implementations
                 throw;
             }
         }
+
+        public async Task<List<CustomerDto>> GetCustomersBrands()
+        {
+            try
+            {
+                var customersBrand = await _db.Customers
+                    .Include(c => c.CustomersBrands)
+                        .ThenInclude(cb=>cb.Brand)
+                    .Select(c => new CustomerDto
+                    {
+                        FirstName = c.FirstName,
+                        LastName = c.LastName,
+                        Email = c.Email,
+                        TCKN = c.TCKN,
+                        CustomersBrands = c.CustomersBrands.Select(b => new CustomersBrandDto
+                        {
+                            BrandId = b.BrandId,
+                            BrandName = b.Brand.Name
+                        }).ToList()
+                    }).ToListAsync();
+
+                return customersBrand; 
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "GetCustomersBrands metodu çalışırken hata oluştu.");
+                throw;
+            }
+        }
+
     }
 }

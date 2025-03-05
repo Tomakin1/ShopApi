@@ -139,6 +139,18 @@
         }
       }
     },
+    "/customer/Customers-brand": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/product": {
       "post": {
         "tags": [
@@ -239,21 +251,33 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Product"
+                "$ref": "#/components/schemas/ProductDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Product"
+                "$ref": "#/components/schemas/ProductDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Product"
+                "$ref": "#/components/schemas/ProductDto"
               }
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/product/products-brand": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -292,12 +316,33 @@
         },
         "additionalProperties": false
       },
+      "BrandDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "productsIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "customersBrandsIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Customer": {
-        "required": [
-          "email",
-          "firstName",
-          "lastName"
-        ],
         "type": "object",
         "properties": {
           "id": {
@@ -305,16 +350,16 @@
             "format": "uuid"
           },
           "firstName": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "lastName": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "email": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "tckn": {
             "type": "integer",
@@ -423,10 +468,10 @@
             },
             "nullable": true
           },
-          "customerDetails": {
+          "customersBrands": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CustomerDetailDto"
+              "$ref": "#/components/schemas/CustomersBrandDto"
             },
             "nullable": true
           },
@@ -449,6 +494,30 @@
           },
           "brand": {
             "$ref": "#/components/schemas/Brand"
+          },
+          "customerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/Customer"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CustomersBrandDto": {
+        "type": "object",
+        "properties": {
+          "brandId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "brand": {
+            "$ref": "#/components/schemas/Brand"
+          },
+          "brandName": {
+            "type": "string",
+            "nullable": true
           },
           "customerId": {
             "type": "string",
@@ -526,6 +595,9 @@
           "price": {
             "type": "integer",
             "format": "int32"
+          },
+          "brands": {
+            "$ref": "#/components/schemas/BrandDto"
           }
         },
         "additionalProperties": false

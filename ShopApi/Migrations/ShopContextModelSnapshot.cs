@@ -36,7 +36,7 @@ namespace ShopApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brands", (string)null);
 
                     b.HasData(
                         new
@@ -101,7 +101,7 @@ namespace ShopApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
 
                     b.HasData(
                         new
@@ -181,7 +181,7 @@ namespace ShopApi.Migrations
                     b.HasIndex("CustomerId")
                         .IsUnique();
 
-                    b.ToTable("CustomerDetails");
+                    b.ToTable("CustomerDetails", (string)null);
 
                     b.HasData(
                         new
@@ -257,7 +257,7 @@ namespace ShopApi.Migrations
 
                     b.HasIndex("BrandId");
 
-                    b.ToTable("CustomerBrands");
+                    b.ToTable("CustomerBrands", (string)null);
 
                     b.HasData(
                         new
@@ -335,7 +335,7 @@ namespace ShopApi.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Product", (string)null);
 
                     b.HasData(
                         new

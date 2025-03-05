@@ -6,6 +6,7 @@ namespace ShopApi.Dtos
     {
         public Guid BrandId { get; set; }
         public Brand? Brand { get; set; }
+        public string BrandName { get; set; }
 
         public Guid CustomerId { get; set; }
         public Customer? Customer { get; set; }

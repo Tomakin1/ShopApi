@@ -7,9 +7,10 @@ namespace ShopApi.Repositories.Interfaces
     {
         Task AddProduct(ProductDto product);
         Task DeleteProduct(string Name);
-        Task UpdateProduct(string Name, Product product);
+        Task UpdateProduct(string Name, ProductDto product);
         Task<List<ProductDto>> AllProducts();
         Task<ProductDto> ProductByName(string Name);
+        Task<List<ProductDto>> ProductsBrands();
 
     }
 }

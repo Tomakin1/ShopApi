@@ -114,7 +114,7 @@ namespace ShopApi.Controllers
         }
 
         [HttpPatch("{Name}")]
-        public async Task<IActionResult> UpdateProduct(string Name, [FromBody]Product product)
+        public async Task<IActionResult> UpdateProduct(string Name, [FromBody]ProductDto product)
         {
             try
             {
@@ -142,6 +142,30 @@ namespace ShopApi.Controllers
                 throw;
             }
 
+        }
+
+        [HttpGet("products-brand")]
+        public async Task<IActionResult> ProductsBrands()
+        {
+            try
+            {
+                var CustomersBrand = await _repo.ProductsBrands();
+
+                if (!CustomersBrand.Any())
+                {
+                    _logger.LogError("Liste Getirilirken Bir Hata Oluştu");
+                    return NotFound();
+                }
+
+                return Ok(CustomersBrand);
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                throw;
+            }
         }
     }
 }

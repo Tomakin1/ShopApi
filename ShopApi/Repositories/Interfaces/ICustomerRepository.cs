@@ -11,5 +11,6 @@ namespace ShopApi.Repositories.Interfaces
         Task<List<CustomerDto>> AllCustomers(); // Tüm Customerları Getir
         Task<CustomerDto> CustomerByName(string LastName); // İsime Gçre Customer Getir
         Task<List<CustomerDto>> GetCustomersProduct();
-    }
+        Task<List<CustomerDto>> GetCustomersBrands();
+    };
 }

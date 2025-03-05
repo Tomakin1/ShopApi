@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using ShopApi.Context;
 using ShopApi.Dtos;
 using ShopApi.Models;
@@ -140,7 +141,42 @@ namespace ShopApi.Repositories.Implementations
 
         }
 
-        public async Task UpdateProduct(string Name, Product product)
+        public async Task<List<ProductDto>> ProductsBrands()
+        {
+            try
+            {
+                var ProductsBrand = await _db.Product
+                        .Include(p => p.Brand)
+                        .Select(p => new ProductDto
+                        {
+                             Name=p.Name,
+                             Title=p.Title,
+                             Description=p.Description,
+                             price=p.price,
+                             Brands=new BrandDto
+                             {
+                                 Name=p.Brand.Name
+                             }
+                             
+                        }).ToListAsync();
+
+                if (!ProductsBrand.Any())
+                {
+                    _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                    return new List<ProductDto>();
+                }
+
+                return ProductsBrand;
+
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                throw;
+            }
+        }
+
+        public async Task UpdateProduct(string Name, ProductDto product)
         {
             if (product==null)
             {
