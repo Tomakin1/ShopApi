@@ -1,14 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ShopApi.Models
 {
     public class Customer
     {
         [Key]
-        public Guid Id { get; set; } 
+        public Guid Id { get; set; }
+
+        [JsonPropertyName("firstName")]
+        [Required]
         public string FirstName { get; set; } = default!;
+        [JsonPropertyName("lastName")]
+        [Required]
         public string LastName { get; set; } = default!;
-        [EmailAddress]
+        [JsonPropertyName("email")]
+        [Required]
         public string Email { get; set; } = default!;
         public int TCKN { get; set; }
 

@@ -1,0 +1,170 @@
+[
+  {
+    "ContainingType": "ShopApi.Controllers.CustomerController",
+    "Method": "AllCustomers",
+    "RelativePath": "customer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.CustomerController",
+    "Method": "AddCustomers",
+    "RelativePath": "customer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerDto",
+        "Type": "CustomerDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.CustomerController",
+    "Method": "UpdateCustomer",
+    "RelativePath": "customer/{LastName}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "LastName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "customerDto",
+        "Type": "CustomerDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.CustomerController",
+    "Method": "CustomerByName",
+    "RelativePath": "customer/{LastName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "LastName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.CustomerController",
+    "Method": "DeleteCustomers",
+    "RelativePath": "customer/{LastName}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "LastName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.CustomerController",
+    "Method": "GetCustomersProduct",
+    "RelativePath": "customer/customers-product",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.ProductController",
+    "Method": "AddProduct",
+    "RelativePath": "product",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "product",
+        "Type": "ShopApi.Dtos.ProductDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.ProductController",
+    "Method": "AllProducts",
+    "RelativePath": "product",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.ProductController",
+    "Method": "DeleteProduct",
+    "RelativePath": "product/{Name}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.ProductController",
+    "Method": "ProductByName",
+    "RelativePath": "product/{Name}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.ProductController",
+    "Method": "UpdateProduct",
+    "RelativePath": "product/{Name}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "product",
+        "Type": "ShopApi.Models.Product",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

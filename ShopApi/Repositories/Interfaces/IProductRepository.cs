@@ -1,0 +1,15 @@
+﻿using ShopApi.Dtos;
+using ShopApi.Models;
+
+namespace ShopApi.Repositories.Interfaces
+{
+    public interface IProductRepository
+    {
+        Task AddProduct(ProductDto product);
+        Task DeleteProduct(string Name);
+        Task UpdateProduct(string Name, Product product);
+        Task<List<ProductDto>> AllProducts();
+        Task<ProductDto> ProductByName(string Name);
+
+    }
+}
