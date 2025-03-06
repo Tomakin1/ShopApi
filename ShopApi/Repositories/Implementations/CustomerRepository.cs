@@ -22,8 +22,8 @@ namespace ShopApi.Repositories.Implementations
         {
             try
             {
-                var Customers = await _db.Customers
-                            .Include(c => c.CustomerDetail) // KULLANMASAN DA OLUR CUSTOMER NESNESİ OLARAK TÜM VERİLERİ ÇEKMEYİP SELECT İLE DTO DÖNÜŞÜMÜ YAPILDIĞI İÇİN INCLUDE KULLANILMAYABİLİR
+                var Customers = await _db.Customers.AsNoTracking()
+                            .Include(c => c.CustomerDetail) //CUSTOMER NESNESİ OLARAK TÜM VERİLERİ ÇEKMEYİP SELECT İLE DTO DÖNÜŞÜMÜ YAPILDIĞI İÇİN INCLUDE KULLANILMAYABİLİR
                             .Select(c => new CustomerDto
                             {
                                 FirstName=c.FirstName,
@@ -95,7 +95,7 @@ namespace ShopApi.Repositories.Implementations
         {
             try
             {
-                var Customer = await _db.Customers
+                var Customer = await _db.Customers.AsNoTracking()
                            .Where(c => c.LastName == LastName)
                            .Select(c => new CustomerDto // Her Bir Customer nesnesi = c , her c için yeni bir CustomerDto nesnesi Oluşturur
                            {
@@ -130,7 +130,8 @@ namespace ShopApi.Repositories.Implementations
                 throw;
             }
         }
-
+        
+        //-------------------------GPT KODU---------------------
         public async Task AddCustomers(CustomerDto Dto) // ÖĞREN
         {
             try
@@ -195,7 +196,7 @@ namespace ShopApi.Repositories.Implementations
         {
             try
             {
-                var CustomersProduct = await _db.Customers
+                var CustomersProduct = await _db.Customers.AsNoTracking()
                         .Include(c => c.Products)
                         .Select(c => new CustomerDto
                         {
@@ -230,6 +231,7 @@ namespace ShopApi.Repositories.Implementations
             }
         }
 
+        //--------------------GPT KODU ÖĞREN---------------------
         public async Task<List<CustomerDto>> GetCustomersBrands()
         {
             try

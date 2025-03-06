@@ -35,10 +35,12 @@ namespace ShopApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("Bilinmeyen Bir Hata Oluştu: " + ex.Message);
-                return StatusCode(500, "Sunucu hatası.");
+                _logger.LogCritical("Bilinmeyen Bir Hata Oluştu: " + ex.Message);
+                throw; 
+                // Global Hata Yönetimi olmadığı için throw yerine tercih edildi fakat best practice Global Hata Yönetimi ve throw kullanımı
             }
         }
+
         [HttpGet("customers-product")]
         public async Task<IActionResult> GetCustomersProduct()
         {
@@ -56,7 +58,7 @@ namespace ShopApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                _logger.LogCritical("Bilinmeyen Bir Hata Oluştu"+ex.Message);
                 throw;
             }
         }
@@ -72,8 +74,8 @@ namespace ShopApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("Bilinmeyen Bir Hata Oluştu: " + ex.Message);
-                return StatusCode(500, "Sunucu hatası.");
+                _logger.LogCritical("Bilinmeyen Bir Hata Oluştu: " + ex.Message);
+                throw;
             }
         }
 
@@ -95,8 +97,8 @@ namespace ShopApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("Bilinmeyen Bir Hata Oluştu: " + ex.Message);
-                return StatusCode(500, "Sunucu hatası.");
+                _logger.LogCritical("Bilinmeyen Bir Hata Oluştu: " + ex.Message);
+                throw;
             }
         }
 
@@ -111,13 +113,13 @@ namespace ShopApi.Controllers
                     return BadRequest();
                 }
                 await _repo.AddCustomers(customerDto);
-                return Ok(customerDto);
+                return StatusCode(201,customerDto);
 
             }
             catch (Exception ex)
             {
-                _logger.LogError("Bilinmeyen Bir Hata oluştu: " + ex.Message);
-                return StatusCode(500, "Sunucu hatası.");
+                _logger.LogCritical("Bilinmeyen Bir Hata oluştu: " + ex.Message);
+                throw;
             }
         }
 
@@ -133,8 +135,8 @@ namespace ShopApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("Bilinmeyen Bir Hata oluştu: " + ex.Message);
-                return StatusCode(500, "Sunucu hatası.");
+                _logger.LogCritical("Bilinmeyen Bir Hata oluştu: " + ex.Message);
+                throw;
             }
         }
         [HttpGet("Customers-brand")]
@@ -155,7 +157,7 @@ namespace ShopApi.Controllers
             }
             catch(Exception ex)
             {
-                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                _logger.LogCritical("Bilinmeyen Bir Hata Oluştu"+ex.Message);
                 throw;
             }
         }

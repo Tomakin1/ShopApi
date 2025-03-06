@@ -31,7 +31,7 @@ namespace ShopApi.Repositories.Implementations
                 var newBrand = new Brand
                 {
                     Id = Guid.NewGuid(),
-                    Name = brand.Name,
+                    Name = brand.Name,        
 
                 };
                   
@@ -42,6 +42,71 @@ namespace ShopApi.Repositories.Implementations
             catch(Exception ex)
             {
                 _logger.LogError("Bilinmeyen Bir Hata Olmuş");
+                throw;
+            }
+        }
+
+        public async Task<Product> DeleteBrandsProduct(string brandName,string productName)
+        {
+            try
+            {
+                var Brand = await _db.Brands
+                        .FirstOrDefaultAsync(b => b.Name == brandName);
+
+                if (Brand==null)
+                {
+                    _logger.LogError("İstenen Marka Getirilirken Bir Hata Oluştu Marka : "+ brandName);
+                    return null;
+                }
+
+                  var Product =Brand.Products.FirstOrDefault(p => p.Name == productName);
+
+                if (Product==null)
+                {
+                    _logger.LogError("İstenen Marka Getirilirken Bir Hata Oluştu Marka : " + productName);
+                    return null;
+                }
+
+                _db.Product.Remove(Product);
+                await _db.SaveChangesAsync();
+
+                return Product;
+
+
+
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                throw;
+            }
+        }
+
+        public async Task<List<Brand>> GetBrands()
+        {
+            try
+            {
+                var Brands = await _db.Brands.AsNoTracking()
+                            .Select(b => new Brand
+                            {
+                                Name=b.Name,
+                                Products=b.Products,
+                                CustomersBrands=b.CustomersBrands
+                                
+                            }).ToListAsync();
+
+                if (!Brands.Any())
+                {
+                    _logger.LogError("Liste Getirilirken Bir Hata Oluştu");
+                    return new List<Brand>();
+                }
+
+                return Brands;
+
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
                 throw;
             }
         }
@@ -67,5 +132,51 @@ namespace ShopApi.Repositories.Implementations
                 throw;
             }
         }
+
+        public async Task UpdateBrand(string Name, BrandDto brandDto)
+        {
+
+            try
+            {
+
+                if (brandDto==null)
+                {
+                    _logger.LogError("İstenen Bilgileri Giriniz");
+                    return;
+                }
+
+                var CurrentBrand = await _db.Brands.FirstOrDefaultAsync(b=> b.Name==Name);
+
+                if (CurrentBrand == null)
+                {
+                    _logger.LogError("İstenen Marka Bulunamadı Marka :"+Name);
+                    return;
+                }
+
+                CurrentBrand.Name = brandDto.Name;   // Öğren
+                CurrentBrand.Products = brandDto.Products.Select(p => new Product
+                {
+                    Name=p.Name,
+                    price=p.price,
+                    Title=p.Title,
+                    Description=p.Description
+                    
+
+                }).ToList();
+
+                _db.Brands.Update(CurrentBrand);
+                await _db.SaveChangesAsync();
+
+
+
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                throw;
+            }
+        }
+
+
     }
 }

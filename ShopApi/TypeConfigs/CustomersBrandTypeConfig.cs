@@ -19,7 +19,7 @@ namespace ShopApi.TypeConfigs
                 .WithMany(b => b.CustomersBrands)
                 .HasForeignKey(cb => cb.BrandId);
 
-            // Seed Data for CustomersBrand
+            //<-----------------------------------CHATGPT DATASEED KODLARI--------------------------------------------->
             builder.HasData(
                 new CustomersBrand
                 {

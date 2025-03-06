@@ -6,7 +6,7 @@ namespace ShopApi.Dtos
     {
         public string Name { get; set; } = default!;
 
-        public List<Guid>? ProductsIds { get; set; } = new List<Guid>();
-        public List<Guid>? CustomersBrandsIds { get; set; } = new List<Guid>();
+        public List<ProductDto>? Products { get; set; } = new List<ProductDto>();
+        public List<CustomersBrandDto>? CustomerBrands  { get; set; } = new List<CustomersBrandDto>();
     }
 }

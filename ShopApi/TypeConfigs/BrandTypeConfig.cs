@@ -9,13 +9,20 @@ namespace ShopApi.TypeConfigs
         public void Configure(EntityTypeBuilder<Brand> builder)
         {
             builder.Property(b => b.Id).ValueGeneratedOnAdd().HasDefaultValueSql("NEWID()");
-
-            builder.Property(b => b.Name).IsRequired().HasMaxLength(50);
+            builder.Property(b => b.Name).IsRequired().HasMaxLength(50).HasColumnType("nvarchar");
 
             builder.HasMany(b => b.Products)
                    .WithOne(p => p.Brand)
                    .HasForeignKey(p => p.BrandId)
                    .OnDelete(DeleteBehavior.Restrict); // Dış anahtar ilişki
+
+            builder.HasIndex(b => b.Name)
+                .HasDatabaseName("Index_BrandName") // Index
+                .IsUnique(false);
+
+
+
+            //<-----------------------------------CHATGPT DATASEED KODLARI--------------------------------------------->
 
             builder.HasData(
                 new Brand

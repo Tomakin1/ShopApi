@@ -11,6 +11,8 @@ namespace ShopApi.Repositories.Interfaces
         Task<List<ProductDto>> AllProducts();
         Task<ProductDto> ProductByName(string Name);
         Task<List<ProductDto>> ProductsBrands();
+        Task IncrementProductsPrice(int Price); // BATCH İŞLEMİ
+
 
     }
 }

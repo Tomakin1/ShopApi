@@ -53,7 +53,7 @@ namespace ShopApi.Repositories.Implementations
         {
             try
             {
-                var ProductList = await _db.Product
+                var ProductList = await _db.Product.AsNoTracking()
                         .Select(p => new ProductDto
                         {
                            
@@ -108,12 +108,29 @@ namespace ShopApi.Repositories.Implementations
             }
         }
 
+        //--------------------GPT KODU ÖĞREN---------------
+        public async Task IncrementProductsPrice(int price)
+        {
+            try
+            {
+                await _db.Product
+                    .Where(p => p.price < price)
+                    .ExecuteUpdateAsync(setters => setters.SetProperty(p => p.price, p => p.price + 10));  // BATCH İŞLEMİ (birden fazla işlemin topluca yapılması)
+
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                throw;
+            }
+        }
+
         public async Task<ProductDto> ProductByName(string Name)
         {
 
             try
             {
-                var Product = await _db.Product
+                var Product = await _db.Product.AsNoTracking()
                     .Where(p => p.Name == Name)
                     .Select(p => new ProductDto
                     {
@@ -145,7 +162,7 @@ namespace ShopApi.Repositories.Implementations
         {
             try
             {
-                var ProductsBrand = await _db.Product
+                var ProductsBrand = await _db.Product.AsNoTracking()
                         .Include(p => p.Brand)
                         .Select(p => new ProductDto
                         {

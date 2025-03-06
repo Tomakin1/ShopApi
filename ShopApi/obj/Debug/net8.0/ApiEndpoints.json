@@ -1,5 +1,89 @@
 [
   {
+    "ContainingType": "ShopApi.Controllers.BrandController",
+    "Method": "AddBrand",
+    "RelativePath": "brand",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "brand",
+        "Type": "ShopApi.Dtos.BrandDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.BrandController",
+    "Method": "GetBrands",
+    "RelativePath": "brand",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.BrandController",
+    "Method": "DeleteBrandsProduct",
+    "RelativePath": "brand/{BrandName}/{productName}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "brandName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "productName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.BrandController",
+    "Method": "DeleteBrand",
+    "RelativePath": "brand/{Name}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.BrandController",
+    "Method": "UpdateBrand",
+    "RelativePath": "brand/{Name}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "brand",
+        "Type": "ShopApi.Dtos.BrandDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ShopApi.Controllers.CustomerController",
     "Method": "AllCustomers",
     "RelativePath": "customer",
@@ -172,6 +256,22 @@
       {
         "Name": "product",
         "Type": "ShopApi.Dtos.ProductDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.ProductController",
+    "Method": "IncrementProductsPrice",
+    "RelativePath": "product/{price}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "price",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

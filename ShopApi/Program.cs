@@ -1,9 +1,9 @@
-using Microsoft.EntityFrameworkCore;
+ï»¿using Microsoft.EntityFrameworkCore;
 using ShopApi.Context;
 using ShopApi.Repositories.Implementations;
 using ShopApi.Repositories.Interfaces;
-using System.Net;  // HttpStatusCode için gerekli namespace
-using System.Text.Json;  // JsonSerializer için gerekli namespace
+using System.Net;  // HttpStatusCode iÃ§in gerekli namespace
+using System.Text.Json;  // JsonSerializer iÃ§in gerekli namespace
 
 namespace ShopApi
 {
@@ -16,28 +16,28 @@ namespace ShopApi
             // Add services to the container.
             builder.Services.AddControllers(options =>
             {
-                // JSON serile?tirme ayarlar?n? özelle?tiriyoruz
+                // JSON serile?tirme ayarlar?n? Ã¶zelle?tiriyoruz
             })
             .AddJsonOptions(options =>
             {
-                // Küçük harfli camelCase kullan?m?
+                // KÃ¼Ã§Ã¼k harfli camelCase kullan?m?
                 options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
 
                 // Null de?erleri serile?tirmemek
                 options.JsonSerializerOptions.IgnoreNullValues = true;
             });
 
-            // Swagger/OpenAPI yap?land?rmas?n? ekliyoruz
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            // Veritaban? ba?lant?s?n? ayarl?yoruz
+
             var connStr = builder.Configuration.GetConnectionString("dockerConnection");
             builder.Services.AddDbContext<ShopContext>(options => options.UseSqlServer(connStr));
 
-            // Repository ve servisleri ekliyoruz
+
             builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IBrandRepository, BrandRepository>();
 
             var app = builder.Build();
 
@@ -48,9 +48,9 @@ namespace ShopApi
                 app.UseSwaggerUI();
             }
 
-            // HTTPS yönlendirmesini ve kimlik do?rulamay? ekliyoruz
+            // HTTPS yÃ¶nlendirmesini ve kimlik do?rulamay? ekliyoruz
             app.UseHttpsRedirection();
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             // Hata i?leme middleware'ini ekliyoruz
             app.UseMiddleware<ErrorHandlingMiddleware>();
@@ -62,7 +62,7 @@ namespace ShopApi
         }
     }
 
-    // ErrorHandlingMiddleware s?n?f?
+    //--------------------------------GPT GLOBAL HATA YÃ–NETÄ°MÄ° KODLARI----------------------------
     public class ErrorHandlingMiddleware
     {
         private readonly RequestDelegate _next;
@@ -83,7 +83,7 @@ namespace ShopApi
             catch (Exception ex)
             {
                 _logger.LogError($"Bir hata olu?tu: {ex.Message}");
-                await HandleExceptionAsync(httpContext, ex); // Hata i?leme fonksiyonunu ça??r
+                await HandleExceptionAsync(httpContext, ex); // Hata i?leme fonksiyonunu Ã§a??r
             }
         }
 
@@ -92,10 +92,10 @@ namespace ShopApi
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            // Hata detaylar?n? JSON format?nda döndürme
+            // Hata detaylar?n? JSON format?nda dÃ¶ndÃ¼rme
             var errorResponse = new
             {
-                message = "Sunucuda bir hata olu?tu. Lütfen daha sonra tekrar deneyin.",
+                message = "Sunucuda bir hata olu?tu. LÃ¼tfen daha sonra tekrar deneyin.",
                 detail = exception.Message
             };
 

@@ -9,15 +9,21 @@ namespace ShopApi.TypeConfigs
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.Property(p => p.Id).ValueGeneratedOnAdd().HasDefaultValueSql("NEWID()");
-            builder.Property(p => p.Name).IsRequired().HasMaxLength(50);
-            builder.Property(p => p.Description).IsRequired().HasMaxLength(500);
-            builder.Property(p => p.Title).IsRequired().HasMaxLength(30);
+            builder.Property(p => p.Name).IsRequired().HasMaxLength(50).HasColumnType("nvarchar");
+            builder.Property(p => p.Description).IsRequired().HasMaxLength(500).HasColumnType("nvarchar");
+            builder.Property(p => p.Title).IsRequired().HasMaxLength(30).HasColumnType("nvarchar");
+
+            builder.HasIndex(u => u.Name)
+                .HasDatabaseName("Index_ProductName") // Index
+                .IsUnique(false);
 
             builder.HasOne(p => p.Brand)
                    .WithMany(b => b.Products)
                    .HasForeignKey(p => p.BrandId)
                    .OnDelete(DeleteBehavior.Restrict); // Dış anahtar için ilişki kurma
 
+
+            //<-----------------------------------CHATGPT DATASEED KODLARI--------------------------------------------->
             builder.HasData(
                 new Product
                 {

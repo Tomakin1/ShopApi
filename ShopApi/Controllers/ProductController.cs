@@ -20,7 +20,6 @@ namespace ShopApi.Controllers
         {
             _repo = repo;
             _logger = logger;
-            _db = db;
         }
 
         [HttpPost]
@@ -35,12 +34,11 @@ namespace ShopApi.Controllers
                 }
 
                 await _repo.AddProduct(product);
-
                 return StatusCode(201,"Ürün Eklendi");
             }
             catch(Exception ex)
             {
-                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                _logger.LogError("Bilinmeyen Bir Hata Oluştu"+ex.Message);
                 throw;
             }
         }
@@ -62,7 +60,7 @@ namespace ShopApi.Controllers
             }
             catch(Exception ex)
             {
-                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                _logger.LogError("Bilinmeyen Bir Hata Oluştu"+ex.Message);
                 throw;
             }
 
@@ -86,7 +84,7 @@ namespace ShopApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                _logger.LogError("Bilinmeyen Bir Hata Oluştu" + ex.Message);
                 throw;
             }
         }
@@ -108,7 +106,7 @@ namespace ShopApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                _logger.LogError("Bilinmeyen Bir Hata Oluştu" + ex.Message);
                 throw;
             }
         }
@@ -124,21 +122,13 @@ namespace ShopApi.Controllers
                     return null;
                 }
 
-                var CurrentProduct = await _db.Product.FirstOrDefaultAsync(p => p.Name == Name);
-
-                if (CurrentProduct==null)
-                {
-                    _logger.LogError("Ürün Bulunamadı , Ürün : "+Name);
-                    return null;
-                }
-
                 await _repo.UpdateProduct(Name, product);
 
-                return Ok(CurrentProduct);
+                return Ok("Ürün Güncellendi");
             }
             catch (Exception ex)
             {
-                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                _logger.LogError("Bilinmeyen Bir Hata Oluştu" + ex.Message);
                 throw;
             }
 
@@ -163,7 +153,23 @@ namespace ShopApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                _logger.LogError("Bilinmeyen Bir Hata Oluştu" + ex.Message);
+                throw;
+            }
+        }
+
+        [HttpPatch("{price:int}")]
+        public async Task<IActionResult> IncrementProductsPrice(int price)
+        {
+            try
+            {
+                await _repo.IncrementProductsPrice(price);
+
+                return Ok("Fiyat Artışı Yapıldı");
+
+            }catch(Exception ex)
+            {
+                _logger.LogError("Bilinmeyen Bir Hata Oluştu" + ex.Message);
                 throw;
             }
         }
