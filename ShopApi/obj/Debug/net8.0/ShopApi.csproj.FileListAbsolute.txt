@@ -344,3 +344,5 @@ C:\Users\Ömer Tomakin\Desktop\ShopApi\ShopApi\obj\Debug\net8.0\ref\ShopApi.dll
 C:\Users\tomak\Desktop\ShopApi\ShopApi\obj\Debug\net8.0\ShopApi.sourcelink.json
 C:\Users\tomak\Desktop\ShopApi\ShopApi\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Ömer Tomakin\Desktop\ShopApi\ShopApi\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Ömer Tomakin\Desktop\ShopApi\ShopApi\bin\Debug\net8.0\Entities.dll
+C:\Users\Ömer Tomakin\Desktop\ShopApi\ShopApi\bin\Debug\net8.0\Entities.pdb

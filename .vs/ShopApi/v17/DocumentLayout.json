@@ -3,30 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\controllers\\brandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\controllers\\brandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\repositories\\implementations\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\repositories\\implementations\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\repositories\\implementations\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\repositories\\implementations\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\repositories\\interfaces\\ibrandrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\repositories\\interfaces\\ibrandrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -37,6 +13,34 @@
     {
       "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\repositories\\interfaces\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\repositories\\interfaces\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\repositories\\implementations\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\repositories\\implementations\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\repositories\\implementations\\brandrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\repositories\\implementations\\brandrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\repositories\\implementations\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\repositories\\implementations\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\controllers\\brandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\controllers\\brandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2FC4DCBA-67A1-4444-8566-C111A458C9D5}|ShopApi\\ShopApi.csproj|c:\\users\\\u00F6mer tomakin\\desktop\\shopapi\\shopapi\\dtos\\customersbranddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -78,7 +82,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -98,33 +102,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "ShopApi\\Controllers\\ProductController.cs",
-              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "ShopApi\\Controllers\\ProductController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAA0wBcAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "BrandRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Implementations\\BrandRepository.cs",
+              "RelativeDocumentMoniker": "ShopApi\\Repositories\\Implementations\\BrandRepository.cs",
+              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Implementations\\BrandRepository.cs",
+              "RelativeToolTip": "ShopApi\\Repositories\\Implementations\\BrandRepository.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAiwBYAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T09:56:12.868Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-07T05:30:04.391Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CustomerController.cs",
-              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Controllers\\CustomerController.cs",
-              "RelativeDocumentMoniker": "ShopApi\\Controllers\\CustomerController.cs",
-              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Controllers\\CustomerController.cs",
-              "RelativeToolTip": "ShopApi\\Controllers\\CustomerController.cs",
-              "ViewState": "AgIAAIUAAAAAAAAAAAAwwIoAAAAVAAAAAAAAAA==",
+              "Title": "ICustomerRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Interfaces\\ICustomerRepository.cs",
+              "RelativeDocumentMoniker": "ShopApi\\Repositories\\Interfaces\\ICustomerRepository.cs",
+              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Interfaces\\ICustomerRepository.cs",
+              "RelativeToolTip": "ShopApi\\Repositories\\Interfaces\\ICustomerRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T09:51:32.125Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-06T09:45:50.757Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BrandController.cs",
+              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Controllers\\BrandController.cs",
+              "RelativeDocumentMoniker": "ShopApi\\Controllers\\BrandController.cs",
+              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Controllers\\BrandController.cs",
+              "RelativeToolTip": "ShopApi\\Controllers\\BrandController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T05:57:26.541Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Interfaces\\IProductRepository.cs",
+              "RelativeDocumentMoniker": "ShopApi\\Repositories\\Interfaces\\IProductRepository.cs",
+              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Interfaces\\IProductRepository.cs",
+              "RelativeToolTip": "ShopApi\\Repositories\\Interfaces\\IProductRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T07:03:04.52Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Implementations\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "ShopApi\\Repositories\\Implementations\\ProductRepository.cs",
+              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Implementations\\ProductRepository.cs",
+              "RelativeToolTip": "ShopApi\\Repositories\\Implementations\\ProductRepository.cs",
+              "ViewState": "AgIAAN0AAAAAAAAAAAAIwPIAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T06:59:21.633Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "IBrandRepository.cs",
               "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Interfaces\\IBrandRepository.cs",
               "RelativeDocumentMoniker": "ShopApi\\Repositories\\Interfaces\\IBrandRepository.cs",
@@ -137,46 +175,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ICustomerRepository.cs",
-              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Interfaces\\ICustomerRepository.cs",
-              "RelativeDocumentMoniker": "ShopApi\\Repositories\\Interfaces\\ICustomerRepository.cs",
-              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Interfaces\\ICustomerRepository.cs",
-              "RelativeToolTip": "ShopApi\\Repositories\\Interfaces\\ICustomerRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "CustomerRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Implementations\\CustomerRepository.cs",
+              "RelativeDocumentMoniker": "ShopApi\\Repositories\\Implementations\\CustomerRepository.cs",
+              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Implementations\\CustomerRepository.cs",
+              "RelativeToolTip": "ShopApi\\Repositories\\Implementations\\CustomerRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAI0AAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T09:45:50.757Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-06T06:41:26.579Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ProductTypeConfig.cs",
-              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\TypeConfigs\\ProductTypeConfig.cs",
-              "RelativeDocumentMoniker": "ShopApi\\TypeConfigs\\ProductTypeConfig.cs",
-              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\TypeConfigs\\ProductTypeConfig.cs",
-              "RelativeToolTip": "ShopApi\\TypeConfigs\\ProductTypeConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAhAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "ShopApi\\Controllers\\ProductController.cs",
+              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "ShopApi\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAALIAAAAAAAAAAAAkwMoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T07:59:41.742Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-06T09:56:12.868Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "ShopApi\\Controllers\\CustomerController.cs",
+              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "ShopApi\\Controllers\\CustomerController.cs",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAUwK0AAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T09:51:32.125Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Program.cs",
+              "RelativeDocumentMoniker": "ShopApi\\Program.cs",
+              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Program.cs",
+              "RelativeToolTip": "ShopApi\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAABSwBkAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-04T17:48:50.702Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "CustomerTypeConfig.cs",
-              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\TypeConfigs\\CustomerTypeConfig.cs",
-              "RelativeDocumentMoniker": "ShopApi\\TypeConfigs\\CustomerTypeConfig.cs",
-              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\TypeConfigs\\CustomerTypeConfig.cs",
-              "RelativeToolTip": "ShopApi\\TypeConfigs\\CustomerTypeConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T07:57:24.927Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
               "Title": "CustomersBrandTypeConfig.cs",
               "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\TypeConfigs\\CustomersBrandTypeConfig.cs",
               "RelativeDocumentMoniker": "ShopApi\\TypeConfigs\\CustomersBrandTypeConfig.cs",
@@ -184,90 +231,59 @@
               "RelativeToolTip": "ShopApi\\TypeConfigs\\CustomersBrandTypeConfig.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAA2wBsAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T18:24:47.143Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-04T18:24:47.143Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Program.cs",
-              "RelativeDocumentMoniker": "ShopApi\\Program.cs",
-              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Program.cs",
-              "RelativeToolTip": "ShopApi\\Program.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAAxAAAAAAAAAA==",
+              "DocumentIndex": 12,
+              "Title": "CustomerTypeConfig.cs",
+              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\TypeConfigs\\CustomerTypeConfig.cs",
+              "RelativeDocumentMoniker": "ShopApi\\TypeConfigs\\CustomerTypeConfig.cs",
+              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\TypeConfigs\\CustomerTypeConfig.cs",
+              "RelativeToolTip": "ShopApi\\TypeConfigs\\CustomerTypeConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T17:48:50.702Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BrandController.cs",
-              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Controllers\\BrandController.cs",
-              "RelativeDocumentMoniker": "ShopApi\\Controllers\\BrandController.cs",
-              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Controllers\\BrandController.cs",
-              "RelativeToolTip": "ShopApi\\Controllers\\BrandController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T05:57:26.541Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-06T07:57:24.927Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
+              "Title": "ProductTypeConfig.cs",
+              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\TypeConfigs\\ProductTypeConfig.cs",
+              "RelativeDocumentMoniker": "ShopApi\\TypeConfigs\\ProductTypeConfig.cs",
+              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\TypeConfigs\\ProductTypeConfig.cs",
+              "RelativeToolTip": "ShopApi\\TypeConfigs\\ProductTypeConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T07:59:41.742Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "20250306080403_BrandCustomerProductIndex.cs",
               "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Migrations\\20250306080403_BrandCustomerProductIndex.cs",
               "RelativeDocumentMoniker": "ShopApi\\Migrations\\20250306080403_BrandCustomerProductIndex.cs",
               "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Migrations\\20250306080403_BrandCustomerProductIndex.cs",
               "RelativeToolTip": "ShopApi\\Migrations\\20250306080403_BrandCustomerProductIndex.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAABSwBUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T08:04:05.084Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-06T08:04:05.084Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CustomerRepository.cs",
-              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Implementations\\CustomerRepository.cs",
-              "RelativeDocumentMoniker": "ShopApi\\Repositories\\Implementations\\CustomerRepository.cs",
-              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Implementations\\CustomerRepository.cs",
-              "RelativeToolTip": "ShopApi\\Repositories\\Implementations\\CustomerRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T06:41:26.579Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ProductRepository.cs",
-              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Implementations\\ProductRepository.cs",
-              "RelativeDocumentMoniker": "ShopApi\\Repositories\\Implementations\\ProductRepository.cs",
-              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Implementations\\ProductRepository.cs",
-              "RelativeToolTip": "ShopApi\\Repositories\\Implementations\\ProductRepository.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAIBAwH4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T06:59:21.633Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "BrandTypeConfig.cs",
               "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\TypeConfigs\\BrandTypeConfig.cs",
               "RelativeDocumentMoniker": "ShopApi\\TypeConfigs\\BrandTypeConfig.cs",
               "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\TypeConfigs\\BrandTypeConfig.cs",
               "RelativeToolTip": "ShopApi\\TypeConfigs\\BrandTypeConfig.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAABSwA0AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T08:00:56.084Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-06T08:00:56.084Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "CustomerDetailTypeConfig.cs",
               "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\TypeConfigs\\CustomerDetailTypeConfig.cs",
               "RelativeDocumentMoniker": "ShopApi\\TypeConfigs\\CustomerDetailTypeConfig.cs",
@@ -275,12 +291,11 @@
               "RelativeToolTip": "ShopApi\\TypeConfigs\\CustomerDetailTypeConfig.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAQwBEAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T18:38:44.637Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-04T18:38:44.637Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "CustomersBrandDto.cs",
               "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Dtos\\CustomersBrandDto.cs",
               "RelativeDocumentMoniker": "ShopApi\\Dtos\\CustomersBrandDto.cs",
@@ -288,31 +303,17 @@
               "RelativeToolTip": "ShopApi\\Dtos\\CustomersBrandDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-05T17:35:25.842Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-05T17:35:25.842Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IProductRepository.cs",
-              "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Interfaces\\IProductRepository.cs",
-              "RelativeDocumentMoniker": "ShopApi\\Repositories\\Interfaces\\IProductRepository.cs",
-              "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Repositories\\Interfaces\\IProductRepository.cs",
-              "RelativeToolTip": "ShopApi\\Repositories\\Interfaces\\IProductRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T07:03:04.52Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "20250304202630_InitialMigration.cs",
               "DocumentMoniker": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Migrations\\20250304202630_InitialMigration.cs",
               "RelativeDocumentMoniker": "ShopApi\\Migrations\\20250304202630_InitialMigration.cs",
               "ToolTip": "C:\\Users\\\u00D6mer Tomakin\\Desktop\\ShopApi\\ShopApi\\Migrations\\20250304202630_InitialMigration.cs",
               "RelativeToolTip": "ShopApi\\Migrations\\20250304202630_InitialMigration.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAI4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAABSwI4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-04T20:26:33.863Z"
             }

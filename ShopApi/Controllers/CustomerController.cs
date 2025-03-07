@@ -161,5 +161,27 @@ namespace ShopApi.Controllers
                 throw;
             }
         }
+
+        [HttpGet("take/{Num}")]
+        public async Task<IActionResult> firstCustomers(int Num)
+        {
+            try
+            {
+                var CustomersList = await _repo.firstCustomers(Num);
+
+                if (!CustomersList.Any()||CustomersList.Count()==0)
+                {
+                    _logger.LogError("Liste Boş veya Bir Hata Oluştu");
+                    return NotFound();
+                }
+
+                return Ok(CustomersList);
+            }
+            catch (Exception)
+            {
+                _logger.LogCritical("Bilinmeyen Bir Hata Oluştu");
+                throw;
+            }
+        }
     }
 }

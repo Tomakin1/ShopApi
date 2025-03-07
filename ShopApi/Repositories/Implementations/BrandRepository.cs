@@ -20,6 +20,7 @@ namespace ShopApi.Repositories.Implementations
 
         public async Task addBrand(BrandDto brand)
         {
+            using var transaction = await _db.Database.BeginTransactionAsync();
             try
             {
                 if (brand==null)
@@ -38,16 +39,20 @@ namespace ShopApi.Repositories.Implementations
                 await _db.Brands.AddAsync(newBrand);
                 await _db.SaveChangesAsync();
 
+                await transaction.CommitAsync();
+
             }
             catch(Exception ex)
             {
                 _logger.LogError("Bilinmeyen Bir Hata Olmuş");
+                await transaction.RollbackAsync();
                 throw;
             }
         }
 
         public async Task<Product> DeleteBrandsProduct(string brandName,string productName)
         {
+            using var transaction = await _db.Database.BeginTransactionAsync();
             try
             {
                 var Brand = await _db.Brands
@@ -70,6 +75,8 @@ namespace ShopApi.Repositories.Implementations
                 _db.Product.Remove(Product);
                 await _db.SaveChangesAsync();
 
+                await transaction.CommitAsync();
+
                 return Product;
 
 
@@ -78,6 +85,7 @@ namespace ShopApi.Repositories.Implementations
             catch(Exception ex)
             {
                 _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                await transaction.RollbackAsync();
                 throw;
             }
         }
@@ -111,8 +119,10 @@ namespace ShopApi.Repositories.Implementations
             }
         }
 
+
         public async Task removeBrand(string Name)
         {
+            using var transaction = await _db.Database.BeginTransactionAsync();
             try
             {
                 var DeletedBrand = await _db.Brands.FirstOrDefaultAsync(b=>b.Name == Name);
@@ -125,17 +135,20 @@ namespace ShopApi.Repositories.Implementations
 
                  _db.Brands.Remove(DeletedBrand);
                 await _db.SaveChangesAsync();
+                await transaction.CommitAsync();
+                
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError("Bilinmeyen Bir Hata oluştu");
+                await transaction.RollbackAsync();
                 throw;
             }
         }
 
         public async Task UpdateBrand(string Name, BrandDto brandDto)
         {
-
+            using var transaction = await _db.Database.BeginTransactionAsync();
             try
             {
 
@@ -167,12 +180,15 @@ namespace ShopApi.Repositories.Implementations
                 _db.Brands.Update(CurrentBrand);
                 await _db.SaveChangesAsync();
 
+                await transaction.CommitAsync();
+
 
 
             }
             catch(Exception ex)
             {
                 _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                await transaction.RollbackAsync();
                 throw;
             }
         }

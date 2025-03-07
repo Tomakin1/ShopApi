@@ -12,6 +12,7 @@ namespace ShopApi.Repositories.Interfaces
         Task<ProductDto> ProductByName(string Name);
         Task<List<ProductDto>> ProductsBrands();
         Task IncrementProductsPrice(int Price); // BATCH İŞLEMİ
+        Task<List<ProductDto>> OrderProductsByPrice(int Id); // ORDER BY
 
 
     }

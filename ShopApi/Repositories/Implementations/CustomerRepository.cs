@@ -59,8 +59,11 @@ namespace ShopApi.Repositories.Implementations
 
         public async Task UpdateCustomer(string LastName, CustomerDto customer)
         {
+            using var transaction = await _db.Database.BeginTransactionAsync();
             try
             {
+                
+
                 var Customer = await _db.Customers
                         .FirstOrDefaultAsync(c => c.LastName == LastName);
                 if (Customer==null)
@@ -83,10 +86,13 @@ namespace ShopApi.Repositories.Implementations
                  _db.Customers.Update(Customer);
                 await _db.SaveChangesAsync();
 
+                await transaction.CommitAsync();
+
             }
             catch(Exception ex)
             {
                 _logger.LogError("Bilinmeyen Bir Hata Oluştu" + ex);
+                await transaction.RollbackAsync();
                 throw;
             }
         }
@@ -122,6 +128,7 @@ namespace ShopApi.Repositories.Implementations
                 }
 
                 return Customer;
+                
 
             }
             catch(Exception ex)
@@ -134,6 +141,7 @@ namespace ShopApi.Repositories.Implementations
         //-------------------------GPT KODU---------------------
         public async Task AddCustomers(CustomerDto Dto) // ÖĞREN
         {
+            using var transaction = await _db.Database.BeginTransactionAsync();
             try
             {
                 if (Dto == null)
@@ -161,10 +169,13 @@ namespace ShopApi.Repositories.Implementations
 
                 await _db.Customers.AddAsync(NewCustomer);
                 await _db.SaveChangesAsync();
+
+                await transaction.CommitAsync();
             }
             catch (Exception ex)
             {
                 _logger.LogError("Bilinmeyen Bir Hata Oluştu: " + ex.Message);
+                await transaction.RollbackAsync();
                 throw;
             }
         }
@@ -172,6 +183,7 @@ namespace ShopApi.Repositories.Implementations
 
         public async Task DeleteCustomers(string LastName)
         {
+            using var transaction = await _db.Database.BeginTransactionAsync();
             try
             {
                 var DeletedCustomer = await _db.Customers.FirstOrDefaultAsync(c => c.LastName == LastName);
@@ -183,6 +195,8 @@ namespace ShopApi.Repositories.Implementations
 
                 _db.Customers.Remove(DeletedCustomer);
                await _db.SaveChangesAsync();
+
+                await transaction.CommitAsync();
 
             }
             catch(Exception ex)
@@ -259,6 +273,34 @@ namespace ShopApi.Repositories.Implementations
                 _logger.LogError(ex, "GetCustomersBrands metodu çalışırken hata oluştu.");
                 throw;
             }
+        }
+
+        public async Task<List<CustomerDto>> firstCustomers(int Num) // verilen sayıya göre ilk kayıtları getirir  TAKE SKİP
+        {
+            try
+            {
+                 var FiveCustomer = await _db.Customers.AsNoTracking()
+                    .Select(c => new CustomerDto
+                    {
+                        FirstName = c.FirstName,
+                        LastName = c.LastName
+                    }).Skip(1).Take(Num).ToListAsync();   //İLK 1 KAYIT SKİPLE ATLANDI KULLANICININ VERDİĞİ SAYI KADAR KAYIT TAKE İLE GETİRİLDİ
+
+                if (!FiveCustomer.Any() || FiveCustomer.Count==0)
+                {
+                    _logger.LogError("Liste Getirilirken Bir Hata Oluştu");
+                    return new List<CustomerDto>();
+                    
+                }
+
+                return FiveCustomer;
+            }
+            catch(Exception ex)
+            {
+                _logger.LogCritical("Bilinmeyen Bir Hata Oluştu");
+                throw;
+            }
+
         }
 
     }

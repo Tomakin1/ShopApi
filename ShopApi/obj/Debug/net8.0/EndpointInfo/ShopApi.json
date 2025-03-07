@@ -283,6 +283,29 @@
         }
       }
     },
+    "/customer/take/{Num}": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "parameters": [
+          {
+            "name": "Num",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/product": {
       "post": {
         "tags": [
@@ -439,6 +462,29 @@
           }
         }
       }
+    },
+    "/product/orderby/{Price}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "Price",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -496,6 +542,12 @@
         "additionalProperties": false
       },
       "Customer": {
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "tckn"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -503,16 +555,20 @@
             "format": "uuid"
           },
           "firstName": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
           },
           "lastName": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
           },
           "email": {
+            "maxLength": 100,
+            "minLength": 1,
             "type": "string",
-            "nullable": true
+            "format": "email"
           },
           "tckn": {
             "type": "integer",

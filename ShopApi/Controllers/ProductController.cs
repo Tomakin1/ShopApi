@@ -173,5 +173,31 @@ namespace ShopApi.Controllers
                 throw;
             }
         }
+
+        [HttpGet("orderby/{Price:int}")]
+        public async Task<IActionResult> OrderProductsByPrice(int Price)
+        {
+            try
+            {
+                var Prices = await _repo.OrderProductsByPrice(Price);
+
+                if (!Prices.Any())
+                {
+                    _logger.LogError("Liste Getirilirken Bir Hata Oluştu");
+                    return NotFound();
+                }
+
+                return Ok(Prices);
+
+            }
+            catch(Exception ex)
+            {
+                _logger.LogCritical("Bilinmeyen Bir Hata Oluştu");
+                throw;
+            }
+
+        }
+
+
     }
 }

@@ -183,6 +183,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ShopApi.Controllers.CustomerController",
+    "Method": "firstCustomers",
+    "RelativePath": "customer/take/{Num}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Num",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ShopApi.Controllers.ProductController",
     "Method": "AddProduct",
     "RelativePath": "product",
@@ -271,6 +287,22 @@
     "Parameters": [
       {
         "Name": "price",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.ProductController",
+    "Method": "OrderProductsByPrice",
+    "RelativePath": "product/orderby/{Price}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Price",
         "Type": "System.Int32",
         "IsRequired": true
       }

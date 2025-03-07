@@ -4,6 +4,7 @@ using ShopApi.Context;
 using ShopApi.Dtos;
 using ShopApi.Models;
 using ShopApi.Repositories.Interfaces;
+using System.Transactions;
 
 namespace ShopApi.Repositories.Implementations
 {
@@ -20,6 +21,7 @@ namespace ShopApi.Repositories.Implementations
 
         public async Task AddProduct(ProductDto Dto)
         {
+            using var transaction = await _db.Database.BeginTransactionAsync();
             try
             {
                 if (Dto == null)
@@ -41,10 +43,13 @@ namespace ShopApi.Repositories.Implementations
                 await _db.Product.AddAsync(NewProduct);
                 await _db.SaveChangesAsync();
 
+                await transaction.CommitAsync();
+
             }
             catch (Exception ex)
             {
                 _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                await transaction.RollbackAsync();
                 throw;
             }
         }
@@ -84,8 +89,10 @@ namespace ShopApi.Repositories.Implementations
 
         public async Task DeleteProduct(string Name)
         {
+            using var transaction = await _db.Database.BeginTransactionAsync();
             try
             {
+
                 var DeletedProduct = await _db.Product.FirstOrDefaultAsync(p => p.Name == Name);
 
                 if (DeletedProduct==null)
@@ -98,15 +105,19 @@ namespace ShopApi.Repositories.Implementations
                     await _db.SaveChangesAsync();
                 }
 
+                await transaction.CommitAsync();
+
 
 
             }
             catch(Exception ex)
             {
                 _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                await transaction.RollbackAsync();
                 throw;
             }
         }
+
 
         //--------------------GPT KODU ÖĞREN---------------
         public async Task IncrementProductsPrice(int price)
@@ -121,6 +132,40 @@ namespace ShopApi.Repositories.Implementations
             catch(Exception ex)
             {
                 _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                throw;
+            }
+        }
+
+        public async Task<List<ProductDto>> OrderProductsByPrice(int price) // ORDER BY
+        {
+            try
+            {
+                var Prices = await _db.Product.AsNoTracking()
+                        .Where(p => p.price < price)
+                        .OrderBy(p=>p.price)
+                        .Select(p=> new ProductDto
+                        {
+                            Name=p.Name,
+                            Title=p.Title,
+                            Description=p.Description,
+                            price = p.price
+                            
+                        })
+                        .ToListAsync();
+
+                if (!Prices.Any())
+                {
+                    _logger.LogError("Liste Getirilirken Bir Hata Oluştu");
+                    return new List<ProductDto>();
+                }
+
+                return Prices;
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical("Bilinmeyen Bir Hata Oluştu"+ex.Message);
                 throw;
             }
         }
@@ -195,27 +240,43 @@ namespace ShopApi.Repositories.Implementations
 
         public async Task UpdateProduct(string Name, ProductDto product)
         {
-            if (product==null)
+            using var transaction = await _db.Database.BeginTransactionAsync();
+
+            try
             {
-                _logger.LogError("İstenen Bilgileri Giriniz");
-                return;
+                if (product == null)
+                {
+                    _logger.LogError("İstenen Bilgileri Giriniz");
+                    return;
+                }
+
+                var CurrentProduct = await _db.Product.FirstOrDefaultAsync(p => p.Name == Name);
+
+                if (CurrentProduct == null)
+                {
+                    _logger.LogError("Ürün Bulunamadı Ürün : " + Name);
+                    return;
+                }
+
+                CurrentProduct.Name = product.Name;
+                CurrentProduct.Title = product.Title;
+                CurrentProduct.Description = product.Description;
+                CurrentProduct.price = product.price;
+
+                _db.Product.Update(CurrentProduct);
+                await _db.SaveChangesAsync();
+
+                await transaction.CommitAsync();
+
             }
-
-            var CurrentProduct = await _db.Product.FirstOrDefaultAsync(p=>p.Name==Name);
-
-            if (CurrentProduct==null)
+            catch(Exception ex)
             {
-                _logger.LogError("Ürün Bulunamadı Ürün : "+Name);
-                return;
+                _logger.LogCritical("Bilinmeyen Bir Hata Oluştu");
+                await transaction.RollbackAsync();
+                throw;
             }
-
-            CurrentProduct.Name = product.Name;
-            CurrentProduct.Title = product.Title;
-            CurrentProduct.Description = product.Description;
-            CurrentProduct.price = product.price;
-
-            _db.Product.Update(CurrentProduct);
-            await _db.SaveChangesAsync();
+            
+            
         }
     }
 }
