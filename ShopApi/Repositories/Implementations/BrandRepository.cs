@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using ShopApi.Context;
 using ShopApi.Dtos;
 using ShopApi.Models;
@@ -8,13 +9,15 @@ namespace ShopApi.Repositories.Implementations
 {
     public class BrandRepository : IBrandRepository
     {
+        private readonly IMemoryCache _cache;
         private readonly ShopContext _db;
         private readonly ILogger<BrandRepository> _logger;
 
-        public BrandRepository(ShopContext db, ILogger<BrandRepository> logger) 
+        public BrandRepository(ShopContext db, ILogger<BrandRepository> logger, IMemoryCache cache) 
         {
             _db=db;
             _logger=logger;
+            _cache=cache;
 
         }
 
@@ -94,6 +97,14 @@ namespace ShopApi.Repositories.Implementations
         {
             try
             {
+                var CacheKey = "Brands";
+                if (_cache.TryGetValue(CacheKey,out List<Brand> CachedBrands))
+                {
+                    if (CachedBrands!=null)
+                    {
+                        return CachedBrands;
+                    }
+                }
                 var Brands = await _db.Brands.AsNoTracking()
                             .Select(b => new Brand
                             {
@@ -109,6 +120,7 @@ namespace ShopApi.Repositories.Implementations
                     return new List<Brand>();
                 }
 
+                _cache.Set(CacheKey, Brands,TimeSpan.FromMinutes(60));
                 return Brands;
 
             }
@@ -151,47 +163,72 @@ namespace ShopApi.Repositories.Implementations
             using var transaction = await _db.Database.BeginTransactionAsync();
             try
             {
-
-                if (brandDto==null)
+                if (brandDto == null)
                 {
                     _logger.LogError("İstenen Bilgileri Giriniz");
                     return;
                 }
 
-                var CurrentBrand = await _db.Brands.FirstOrDefaultAsync(b=> b.Name==Name);
+                var currentBrand = await _db.Brands.FirstOrDefaultAsync(b => b.Name == Name);
 
-                if (CurrentBrand == null)
+                if (currentBrand == null)
                 {
-                    _logger.LogError("İstenen Marka Bulunamadı Marka :"+Name);
+                    _logger.LogError("İstenen Marka Bulunamadı Marka :" + Name);
                     return;
                 }
 
-                CurrentBrand.Name = brandDto.Name;   // Öğren
-                CurrentBrand.Products = brandDto.Products.Select(p => new Product
+                currentBrand.Name = brandDto.Name;
+                currentBrand.Products = brandDto.Products.Select(p => new Product
                 {
-                    Name=p.Name,
-                    price=p.price,
-                    Title=p.Title,
-                    Description=p.Description
-                    
-
+                    Name = p.Name,
+                    price = p.price,
+                    Title = p.Title,
+                    Description = p.Description
                 }).ToList();
 
-                _db.Brands.Update(CurrentBrand);
-                await _db.SaveChangesAsync();
+                _db.Brands.Update(currentBrand);
 
-                await transaction.CommitAsync();
+                try
+                {
+                    await _db.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    _logger.LogError("Veri çakışması tespit edildi. Güncellenmiş veriyi alıp tekrar deneyin.");
 
+                    foreach (var entry in ex.Entries)
+                    {
+                        if (entry.Entity is Brand)
+                        {
+                            var proposedValues = entry.CurrentValues;
+                            var databaseValues = await entry.GetDatabaseValuesAsync();
 
+                            if (databaseValues == null)
+                            {
+                                _logger.LogError("Bu kayıt silinmiş. Güncelleme yapılamaz.");
+                                throw new Exception("Bu marka başka biri tarafından silindi.");
+                            }
 
+                            // Kullanıcıya uyarı vermek için eski ve yeni değerleri kaydet
+                            _logger.LogWarning("Eski Veri: {OldData} | Yeni Veri: {NewData}", databaseValues, proposedValues);
+
+                            // Çakışma durumunda, veriyi en güncel haliyle güncelle
+                            entry.OriginalValues.SetValues(databaseValues);
+                        }
+                    }
+
+                    throw new Exception("Veri başka bir kullanıcı tarafından değiştirildi. Lütfen tekrar deneyin.");
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                _logger.LogError("Bilinmeyen Bir Hata Oluştu: " + ex.Message);
                 await transaction.RollbackAsync();
                 throw;
             }
         }
+
 
 
     }

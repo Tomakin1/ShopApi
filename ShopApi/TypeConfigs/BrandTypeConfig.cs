@@ -11,6 +11,8 @@ namespace ShopApi.TypeConfigs
             builder.Property(b => b.Id).ValueGeneratedOnAdd().HasDefaultValueSql("NEWID()");
             builder.Property(b => b.Name).IsRequired().HasMaxLength(50).HasColumnType("nvarchar");
 
+            builder.Property(b => b.RowVersion).IsRowVersion();
+
             builder.HasMany(b => b.Products)
                    .WithOne(p => p.Brand)
                    .HasForeignKey(p => p.BrandId)

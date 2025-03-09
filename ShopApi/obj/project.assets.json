@@ -1695,16 +1695,6 @@
             "rid": "win"
           }
         }
-      },
-      "Entities/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/Entities.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Entities.dll": {}
-        }
       }
     }
   },
@@ -5169,16 +5159,10 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
-    },
-    "Entities/1.0.0": {
-      "type": "project",
-      "path": "../Entities/Entities.csproj",
-      "msbuildProject": "../Entities/Entities.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Entities >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 9.0.2",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.2",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.2",
@@ -5187,23 +5171,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ömer Tomakin\\.nuget\\packages\\": {},
+    "C:\\Users\\tomak\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ömer Tomakin\\Desktop\\ShopApi\\ShopApi\\ShopApi.csproj",
+      "projectUniqueName": "C:\\Users\\tomak\\Desktop\\ShopApi\\ShopApi\\ShopApi.csproj",
       "projectName": "ShopApi",
-      "projectPath": "C:\\Users\\Ömer Tomakin\\Desktop\\ShopApi\\ShopApi\\ShopApi.csproj",
-      "packagesPath": "C:\\Users\\Ömer Tomakin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ömer Tomakin\\Desktop\\ShopApi\\ShopApi\\obj\\",
+      "projectPath": "C:\\Users\\tomak\\Desktop\\ShopApi\\ShopApi\\ShopApi.csproj",
+      "packagesPath": "C:\\Users\\tomak\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\tomak\\Desktop\\ShopApi\\ShopApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Ömer Tomakin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tomak\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5212,17 +5196,12 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {
-            "C:\\Users\\Ömer Tomakin\\Desktop\\ShopApi\\Entities\\Entities.csproj": {
-              "projectPath": "C:\\Users\\Ömer Tomakin\\Desktop\\ShopApi\\Entities\\Entities.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -5235,7 +5214,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -5285,7 +5264,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -12,6 +12,8 @@ namespace ShopApi.TypeConfigs
 
                     builder.HasMany(c => c.Products).WithOne(p => p.Customer).HasForeignKey(p => p.CustomerId);
 
+                    builder.Property(c => c.RowVersion).IsRowVersion();
+
                     builder.HasIndex(u => u.LastName)
                         .HasDatabaseName("Index_CustomerLastName")   // Index
                         .IsUnique(false);

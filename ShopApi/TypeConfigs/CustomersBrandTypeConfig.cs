@@ -11,6 +11,8 @@ namespace ShopApi.TypeConfigs
             builder.Property(x => x.Id).ValueGeneratedOnAdd().HasDefaultValueSql("NEWID()");
             builder.HasKey(cb => new { cb.CustomerId, cb.BrandId });
 
+            builder.Property(cb=>cb.RowVersion).IsRowVersion();
+
             builder.HasOne(cb => cb.Customer)
                 .WithMany(c => c.CustomersBrands)
                 .HasForeignKey(cb => cb.CustomerId);

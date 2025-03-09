@@ -13,6 +13,8 @@ namespace ShopApi.TypeConfigs
             builder.Property(p => p.Description).IsRequired().HasMaxLength(500).HasColumnType("nvarchar");
             builder.Property(p => p.Title).IsRequired().HasMaxLength(30).HasColumnType("nvarchar");
 
+            builder.Property(p=>p.RowVersion).IsRowVersion();
+
             builder.HasIndex(u => u.Name)
                 .HasDatabaseName("Index_ProductName") // Index
                 .IsUnique(false);

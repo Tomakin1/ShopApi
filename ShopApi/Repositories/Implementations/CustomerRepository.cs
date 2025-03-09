@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using ShopApi.Context;
 using ShopApi.Dtos;
 using ShopApi.Models;
@@ -9,21 +10,32 @@ namespace ShopApi.Repositories.Implementations
 {
     public class CustomerRepository : ICustomerRepository
     {
+        private readonly IMemoryCache _cache;
         private readonly ShopContext _db;
         private readonly ILogger<CustomerRepository> _logger;
 
-        public CustomerRepository(ShopContext db, ILogger<CustomerRepository> logger)
+        public CustomerRepository(ShopContext db, ILogger<CustomerRepository> logger, IMemoryCache cache)
         {
             _db = db;
             _logger = logger;
+            _cache = cache;
         }
 
-        public  async Task<List<CustomerDto>> AllCustomers() // Tekrar Et
+        public  async Task<List<CustomerDto>> AllCustomers() 
         {
             try
             {
+
+                var CacheKey = "AllCustomers";
+                if (_cache.TryGetValue(CacheKey,out List<CustomerDto> CachedCustomers))
+                {
+                    if (CachedCustomers!=null)
+                    {
+                        return CachedCustomers;
+                    }
+                }
                 var Customers = await _db.Customers.AsNoTracking()
-                            .Include(c => c.CustomerDetail) //CUSTOMER NESNESİ OLARAK TÜM VERİLERİ ÇEKMEYİP SELECT İLE DTO DÖNÜŞÜMÜ YAPILDIĞI İÇİN INCLUDE KULLANILMAYABİLİR
+                            .Include(c => c.CustomerDetail) 
                             .Select(c => new CustomerDto
                             {
                                 FirstName=c.FirstName,
@@ -47,7 +59,7 @@ namespace ShopApi.Repositories.Implementations
                     _logger.LogError("Liste Getirilirken Bir Hata Oluştu");
                     return new List<CustomerDto>();
                 }
-
+                _cache.Set(CacheKey, Customers,TimeSpan.FromMinutes(60));
                 return Customers;
             }
             catch(Exception ex)
@@ -101,6 +113,15 @@ namespace ShopApi.Repositories.Implementations
         {
             try
             {
+
+                var CacheKey = $"Customer_{LastName}";
+                if (_cache.TryGetValue(CacheKey,out CustomerDto CachedCustomer))
+                {
+                    if (CachedCustomer!=null)
+                    {
+                        return CachedCustomer;
+                    }
+                }
                 var Customer = await _db.Customers.AsNoTracking()
                            .Where(c => c.LastName == LastName)
                            .Select(c => new CustomerDto // Her Bir Customer nesnesi = c , her c için yeni bir CustomerDto nesnesi Oluşturur
@@ -127,6 +148,7 @@ namespace ShopApi.Repositories.Implementations
                     return null;
                 }
 
+                _cache.Set(CacheKey, Customer,TimeSpan.FromMinutes(60));
                 return Customer;
                 
 
@@ -210,6 +232,14 @@ namespace ShopApi.Repositories.Implementations
         {
             try
             {
+                var CacheKey = $"CustomersProduct";
+                if (_cache.TryGetValue(CacheKey, out List<CustomerDto> CachedCustomer))
+                {
+                    if (CachedCustomer != null)
+                    {
+                        return CachedCustomer;
+                    }
+                }
                 var CustomersProduct = await _db.Customers.AsNoTracking()
                         .Include(c => c.Products)
                         .Select(c => new CustomerDto
@@ -236,6 +266,7 @@ namespace ShopApi.Repositories.Implementations
                     return new List<CustomerDto>();
                 }
 
+                _cache.Set(CacheKey, CustomersProduct,TimeSpan.FromMinutes(60));
                 return CustomersProduct;
             }
             catch (Exception)
@@ -250,6 +281,15 @@ namespace ShopApi.Repositories.Implementations
         {
             try
             {
+                var CacheKey = $"CustomersBrands";
+                if (_cache.TryGetValue(CacheKey, out List<CustomerDto> CachedCustomer))
+                {
+                    if (CachedCustomer != null)
+                    {
+                        return CachedCustomer;
+                    }
+                }
+
                 var customersBrand = await _db.Customers
                     .Include(c => c.CustomersBrands)
                         .ThenInclude(cb=>cb.Brand)
@@ -266,6 +306,7 @@ namespace ShopApi.Repositories.Implementations
                         }).ToList()
                     }).ToListAsync();
 
+                _cache.Set(CacheKey, customersBrand, TimeSpan.FromMinutes(60));
                 return customersBrand; 
             }
             catch (Exception ex)

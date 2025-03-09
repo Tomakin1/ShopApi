@@ -34,7 +34,7 @@ namespace ShopApi
             var connStr = builder.Configuration.GetConnectionString("dockerConnection");
             builder.Services.AddDbContext<ShopContext>(options => options.UseSqlServer(connStr));
 
-
+            builder.Services.AddMemoryCache();
             builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IBrandRepository, BrandRepository>();

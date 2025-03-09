@@ -513,6 +513,11 @@
               "$ref": "#/components/schemas/CustomersBrand"
             },
             "nullable": true
+          },
+          "rowVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -590,6 +595,11 @@
           },
           "customerDetail": {
             "$ref": "#/components/schemas/CustomerDetail"
+          },
+          "rowVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -623,6 +633,11 @@
           },
           "gender": {
             "type": "boolean",
+            "nullable": true
+          },
+          "rowVersion": {
+            "type": "string",
+            "format": "byte",
             "nullable": true
           }
         },
@@ -710,6 +725,11 @@
           },
           "customer": {
             "$ref": "#/components/schemas/Customer"
+          },
+          "rowVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -774,6 +794,11 @@
           },
           "customer": {
             "$ref": "#/components/schemas/Customer"
+          },
+          "rowVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
           }
         },
         "additionalProperties": false

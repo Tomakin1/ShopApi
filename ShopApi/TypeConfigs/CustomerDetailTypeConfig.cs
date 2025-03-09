@@ -13,6 +13,7 @@ namespace ShopApi.TypeConfigs
             builder.Property(c => c.Age).IsRequired(false);
             builder.Property(c => c.Job).HasMaxLength(40).HasColumnType("nvarchar").IsRequired(false);
             builder.Property(c => c.Gender).IsRequired(false).HasDefaultValue(true);
+            builder.Property(c => c.RowVersion).IsRowVersion();
 
 
             //<-----------------------------------CHATGPT DATASEED KODLARI--------------------------------------------->

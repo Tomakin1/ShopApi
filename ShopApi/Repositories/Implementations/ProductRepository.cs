@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using ShopApi.Context;
 using ShopApi.Dtos;
 using ShopApi.Models;
@@ -10,13 +11,15 @@ namespace ShopApi.Repositories.Implementations
 {
     public class ProductRepository : IProductRepository
     {
+        private readonly IMemoryCache _cache;
         private readonly ShopContext _db;
         private readonly ILogger<ProductRepository> _logger;
 
-        public ProductRepository(ShopContext db, ILogger<ProductRepository> logger)
+        public ProductRepository(ShopContext db, ILogger<ProductRepository> logger, IMemoryCache cache)
         {
             _db = db;
             _logger = logger;
+            _cache = cache;
         }
 
         public async Task AddProduct(ProductDto Dto)
@@ -58,6 +61,14 @@ namespace ShopApi.Repositories.Implementations
         {
             try
             {
+                var CacheKey = "AllProduct";
+                if (_cache.TryGetValue(CacheKey,out List<ProductDto> CachedProduct))
+                {
+                    if (CachedProduct!=null)
+                    {
+                        return CachedProduct;
+                    }
+                }
                 var ProductList = await _db.Product.AsNoTracking()
                         .Select(p => new ProductDto
                         {
@@ -78,6 +89,7 @@ namespace ShopApi.Repositories.Implementations
                     return new List<ProductDto>();
                 }
 
+                _cache.Set(CacheKey, ProductList,TimeSpan.FromMinutes(60));
                 return ProductList;
             }
             catch (Exception ex)
@@ -175,6 +187,14 @@ namespace ShopApi.Repositories.Implementations
 
             try
             {
+                var CacheKey = $"Product_{Name}";
+                if (_cache.TryGetValue(CacheKey, out ProductDto CachedProduct))
+                {
+                    if (CachedProduct != null)
+                    {
+                        return CachedProduct;
+                    }
+                }
                 var Product = await _db.Product.AsNoTracking()
                     .Where(p => p.Name == Name)
                     .Select(p => new ProductDto
@@ -192,6 +212,7 @@ namespace ShopApi.Repositories.Implementations
                     return null;
                 }
 
+                _cache.Set(CacheKey, Product,TimeSpan.FromMinutes(60));
                 return Product;
 
             }
@@ -207,6 +228,14 @@ namespace ShopApi.Repositories.Implementations
         {
             try
             {
+                var CacheKey = "ProductsBrands";
+                if (_cache.TryGetValue(CacheKey, out List<ProductDto> CachedProduct))
+                {
+                    if (CachedProduct != null)
+                    {
+                        return CachedProduct;
+                    }
+                }
                 var ProductsBrand = await _db.Product.AsNoTracking()
                         .Include(p => p.Brand)
                         .Select(p => new ProductDto
@@ -228,6 +257,7 @@ namespace ShopApi.Repositories.Implementations
                     return new List<ProductDto>();
                 }
 
+                _cache.Set(CacheKey , ProductsBrand, TimeSpan.FromMinutes(60));
                 return ProductsBrand;
 
             }
