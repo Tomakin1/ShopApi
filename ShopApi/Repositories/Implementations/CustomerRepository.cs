@@ -96,9 +96,37 @@ namespace ShopApi.Repositories.Implementations
                 Customer.Email = customer.Email;
 
                  _db.Customers.Update(Customer);
-                await _db.SaveChangesAsync();
 
-                await transaction.CommitAsync();
+                try
+                {
+                    await _db.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                catch(DbUpdateConcurrencyException ex)
+                {
+                    _logger.LogError("Veri Çakışması Oluştu");
+
+                    foreach (var entry in ex.Entries)
+                    {
+                        if (entry.Entity is Customer)
+                        {
+                            var ProposedValues = entry.CurrentValues;
+                            var DatabaseValues = await entry.GetDatabaseValuesAsync();
+
+                            if (DatabaseValues==null)
+                            {
+                                _logger.LogError("Bu Kayıt Silinmiş Güncelleme Yapılamaz");
+                                throw new Exception("Bu Kayıt Başka Bir Kullanıcı Tarafından Silinmiş");
+                            }
+
+                            _logger.LogWarning("Eski Veri : {OldData}, Yeni Veri: {NewData}",ProposedValues, DatabaseValues);
+
+                            entry.OriginalValues.SetValues(DatabaseValues);
+
+                        }
+                    }
+                }
+
 
             }
             catch(Exception ex)
@@ -216,14 +244,48 @@ namespace ShopApi.Repositories.Implementations
                 }
 
                 _db.Customers.Remove(DeletedCustomer);
-               await _db.SaveChangesAsync();
 
-                await transaction.CommitAsync();
+
+                try
+                {
+                    await _db.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                catch(DbUpdateConcurrencyException ex)
+                {
+                    _logger.LogWarning("Veri Çakışması Oluştu");
+
+                    foreach (var entry in ex.Entries)
+                    {
+                        if (entry.Entity is Customer)
+                        {
+                            var proposedValue = entry.CurrentValues;
+                            var databaseValue = await entry.GetDatabaseValuesAsync();
+
+                            if (databaseValue==null)
+                            {
+                                _logger.LogError("Silinmeye Çalışılan Veri Daha Önce Başkası Tarafından Silinmiş Olabilir");
+                                await transaction.RollbackAsync();
+                                throw new Exception("Bu Kayıt Başka Bir Kullanıcı Tarafından Silinmiş");
+                                
+                            }
+
+                            _logger.LogWarning("Eski Veri : {OldData}, Yeni Veri: {NewData}", proposedValue, databaseValue);
+
+                            entry.OriginalValues.SetValues(databaseValue);
+                        }
+                    }
+
+                }
+                await transaction.RollbackAsync();
+                throw new Exception("Veri Çakışması Oluştu, Silme İşlemi Başarısız");
+
 
             }
             catch(Exception ex)
             {
                 _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                await transaction.RollbackAsync();
                 throw;
             }
         }

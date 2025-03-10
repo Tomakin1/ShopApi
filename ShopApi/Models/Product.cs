@@ -18,5 +18,5 @@ namespace ShopApi.Models
         public Customer? Customer { get; set; }
 
         public Byte[] RowVersion { get; set; }
-    }
+    }  
 }

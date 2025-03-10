@@ -111,16 +111,41 @@ namespace ShopApi.Repositories.Implementations
                 {
                     _logger.LogError("Kullanıcı Bulunamadı");
                 }
-                else
+
+                   
+                
+                _db.Product.Remove(DeletedProduct);
+
+
+                try
                 {
-                    _db.Product.Remove(DeletedProduct);
                     await _db.SaveChangesAsync();
+                    await transaction.CommitAsync();
                 }
+                catch(DbUpdateConcurrencyException ex)
+                {
+                    _logger.LogError("Veri Çakışması Oluştu");
 
-                await transaction.CommitAsync();
+                    foreach (var entry in ex.Entries)
+                    {
+                        if (entry.Entity is Product)
+                        {
+                            var proposedValue = entry.CurrentValues;
+                            var databaseValue = await entry.GetDatabaseValuesAsync();
 
+                            if (databaseValue==null)
+                            {
+                                _logger.LogError("Verilen Veriye Ait Ürün Bulunamadı , Başkası Tarafından Silinmiş olabilir");
+                                await transaction.RollbackAsync();
+                                throw new Exception("Bu Ürün Daha Önce Silinmiş Olabilir");
+                            }
 
+                            _logger.LogWarning("Yeni Veri : {NewValue} , Eski Veri : {OldValue}",proposedValue,databaseValue);
 
+                            entry.OriginalValues.SetValues(databaseValue);
+                        }
+                    }
+                }
             }
             catch(Exception ex)
             {
@@ -134,16 +159,50 @@ namespace ShopApi.Repositories.Implementations
         //--------------------GPT KODU ÖĞREN---------------
         public async Task IncrementProductsPrice(int price)
         {
+            using var transaction = await _db.Database.BeginTransactionAsync();
             try
             {
-                await _db.Product
-                    .Where(p => p.price < price)
-                    .ExecuteUpdateAsync(setters => setters.SetProperty(p => p.price, p => p.price + 10));  // BATCH İŞLEMİ (birden fazla işlemin topluca yapılması)
+                try
+                {
+                    await _db.Product
+                   .Where(p => p.price < price)
+
+                   .ExecuteUpdateAsync(setters => setters.SetProperty(p => p.price, p => p.price + 10));  // BATCH İŞLEMİ (birden fazla işlemin topluca yapılması)
+                    await transaction.CommitAsync();
+                }
+                catch(DbUpdateConcurrencyException ex)
+                {
+                    _logger.LogError("Veri Çakışması Oluştu");
+
+                    foreach (var entry in ex.Entries)
+                    {
+                        if (entry.Entity is Product)
+                        {
+                            var proposedValue = entry.CurrentValues;
+                            var databaseValue = await entry.GetDatabaseValuesAsync();
+
+                            if (databaseValue==null)
+                            {
+                                _logger.LogError("Veri Bulunamadı Veya Başkası Tarafından Değiştirilmiş");
+                                 await transaction.RollbackAsync();
+                                throw new Exception("Bu Ürünün Fiyatı Değiştirilmiş Olabilir");
+                            }
+
+                            _logger.LogWarning("Yeni Veri : {NewValue} , Eski Veri : {OldValue}", proposedValue, databaseValue);
+
+                            entry.OriginalValues.SetValues(databaseValue);
+                        }
+                    }
+                }
+               
+                await transaction.RollbackAsync();
+                throw new Exception("İşlem Başarısız Tekrar Deneyiniz");
 
             }
             catch(Exception ex)
             {
                 _logger.LogError("Bilinmeyen Bir Hata Oluştu");
+                await transaction.RollbackAsync();
                 throw;
             }
         }
@@ -195,6 +254,8 @@ namespace ShopApi.Repositories.Implementations
                         return CachedProduct;
                     }
                 }
+
+                
                 var Product = await _db.Product.AsNoTracking()
                     .Where(p => p.Name == Name)
                     .Select(p => new ProductDto
@@ -294,9 +355,40 @@ namespace ShopApi.Repositories.Implementations
                 CurrentProduct.price = product.price;
 
                 _db.Product.Update(CurrentProduct);
-                await _db.SaveChangesAsync();
 
-                await transaction.CommitAsync();
+                try
+                {
+                    await _db.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                catch(DbUpdateConcurrencyException ex)
+                {
+                    _logger.LogError("Veri Çakışması Oluştu");
+
+                    foreach (var entry in ex.Entries)
+                    {
+                        if (entry.Entity is Product)
+                        {
+                            var proposedValue = entry.CurrentValues;
+                            var databaseValue = await entry.GetDatabaseValuesAsync();
+
+                            if (databaseValue==null)
+                            {
+                                _logger.LogError("Değiştirmek İstediğiniz Veri , Çakışma Nedeniyle Onaylanamıyor");
+                                await transaction.RollbackAsync();
+                                throw new Exception("Veri Daha Önce Değiştirilmiş Olabilir");
+                            }
+
+                            _logger.LogWarning("Yeni Veri : {NewValue} , Eski Veri : {OldValue}", proposedValue, databaseValue);
+
+                            entry.OriginalValues.SetValues(databaseValue);
+                        }
+                    }
+                }
+
+               await transaction.RollbackAsync();
+               throw new Exception("İşlem Başarısız Tekrar Deneyiniz");
+
 
             }
             catch(Exception ex)

@@ -76,9 +76,40 @@ namespace ShopApi.Repositories.Implementations
                 }
 
                 _db.Product.Remove(Product);
-                await _db.SaveChangesAsync();
 
-                await transaction.CommitAsync();
+                try
+                {
+                    await _db.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    _logger.LogError("Veri çakışması tespit edildi. Güncellenmiş veriyi alıp tekrar deneyin.");
+
+                    foreach (var entry in ex.Entries)
+                    {
+                        if (entry.Entity is Product)
+                        {
+                            var proposedValues = entry.CurrentValues;
+                            var databaseValues = await entry.GetDatabaseValuesAsync();
+
+                            if (databaseValues == null)
+                            {
+                                _logger.LogError("Bu kayıt silinmiş. Güncelleme yapılamaz.");
+                                throw new Exception("Bu marka başka biri tarafından silindi.");
+                            }
+
+                            // Kullanıcıya uyarı vermek için eski ve yeni değerleri kaydet
+                            _logger.LogWarning("Eski Veri: {OldData} | Yeni Veri: {NewData}", databaseValues, proposedValues);
+
+                            // Çakışma durumunda, veriyi en güncel haliyle güncelle
+                            entry.OriginalValues.SetValues(databaseValues);
+                        }
+                    }
+
+                    throw new Exception("Veri başka bir kullanıcı tarafından değiştirildi. Lütfen tekrar deneyin.");
+                }
+
 
                 return Product;
 
@@ -146,9 +177,38 @@ namespace ShopApi.Repositories.Implementations
                 }
 
                  _db.Brands.Remove(DeletedBrand);
-                await _db.SaveChangesAsync();
-                await transaction.CommitAsync();
-                
+
+                try
+                {
+                    await _db.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                catch(DbUpdateConcurrencyException ex)
+                {
+                    _logger.LogError("Veri Çakışması Meydana Geldi");
+
+                    foreach (var entry in ex.Entries)
+                    {
+                        if (entry.Entity is Brand)
+                        {
+                            var proposedValude = entry.CurrentValues;
+                            var databaseValues = await entry.GetDatabaseValuesAsync();
+
+                            if (databaseValues==null)
+                            {
+                                _logger.LogError("Veri Bulunamadı Ya Da Daha Öncesinde Silinmiş , Veri Tutarsız.");
+                                await transaction.RollbackAsync();
+                                throw new Exception("Veri Başkası Tarafından Silinmiş");
+
+                            }
+                        }
+                    }
+                }
+
+                await transaction.RollbackAsync();
+                throw new Exception("Veri Çakışması Nedeniyle İşlem Başarısız Tekrar Deneyiniz.");
+
+
             }
             catch (Exception ex)
             {
@@ -207,6 +267,7 @@ namespace ShopApi.Repositories.Implementations
                             if (databaseValues == null)
                             {
                                 _logger.LogError("Bu kayıt silinmiş. Güncelleme yapılamaz.");
+                                await transaction.RollbackAsync();
                                 throw new Exception("Bu marka başka biri tarafından silindi.");
                             }
 
@@ -217,7 +278,7 @@ namespace ShopApi.Repositories.Implementations
                             entry.OriginalValues.SetValues(databaseValues);
                         }
                     }
-
+                    await transaction.RollbackAsync();
                     throw new Exception("Veri başka bir kullanıcı tarafından değiştirildi. Lütfen tekrar deneyin.");
                 }
             }
